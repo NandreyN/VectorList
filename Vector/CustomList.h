@@ -9,9 +9,9 @@ namespace CustomListComponents
 			value = 0;
 			next = nullptr;
 		}
-		Node(const T& value)
+		Node(const T& vl)
 		{
-			this->value = value;
+			this->value = vl;
 			next = nullptr;
 		}
 		T value;
@@ -22,14 +22,13 @@ namespace CustomListComponents
 	class ListIterator
 	{
 	public:
-		explicit ListIterator(const Node<T>* const);
+		ListIterator(const Node<T>*);
 		ListIterator(const ListIterator<T>& toCopy);
 		~ListIterator();
 		void operator++();
 		bool operator==(const ListIterator<T>&) const;
 		bool operator!=(const ListIterator<T>&) const;
 		bool isNextNull() const;
-		void setData(const T&);
 		T getData() const;
 	private:
 		Node<T>* getNext() const;
@@ -37,7 +36,7 @@ namespace CustomListComponents
 	};
 
 	template <class T>
-	ListIterator<T>::ListIterator(const Node<T>* const node)
+	ListIterator<T>::ListIterator(const Node<T>* node)
 	{
 		this->_target = new Node<T>();
 		this->_target->next = node->next;
@@ -86,12 +85,6 @@ namespace CustomListComponents
 	bool ListIterator<T>::isNextNull() const
 	{
 		return (this->_target->next == nullptr) ? true : false;
-	}
-
-	template <class T>
-	void ListIterator<T>::setData(const T& dt)
-	{
-		this->_target->value = dt;
 	}
 
 	template <class T>

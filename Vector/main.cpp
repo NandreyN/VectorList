@@ -15,11 +15,12 @@ int main()
 	for (int i = 0; i < 5; i++)
 		cout << list.remove() << endl;
 
-	while(list.begin() != list.end())
+	while (list.begin() != list.end())
 	{
 		cout << list.remove() << endl;
 	}
-	//list.begin().setData(100500); worksincorrectly
+	auto it = list.begin();
+	it.setData(100500);
 	cout << list.remove() << endl;
 	return 0;
 }
