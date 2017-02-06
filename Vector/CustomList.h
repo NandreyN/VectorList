@@ -110,6 +110,14 @@ namespace CustomListComponents
 		ListIterator<T> begin();
 		ListIterator<T> end();
 
+		int size();
+		T& operator[](int i);
+		void push_front(const T&);
+		T pop_back();
+		void push_back(const T&);
+		void insert(int, const T&);
+		T& at(int);
+
 		void add(const T&);
 		T remove();
 	private:
@@ -161,7 +169,7 @@ namespace CustomListComponents
 			return new Node<T>();
 		}
 		Node<T>* copy = this->_listHead;
-		
+
 		while (copy->next != nullptr)
 			copy = copy->next;
 		return copy;
@@ -188,7 +196,7 @@ namespace CustomListComponents
 			return 0;
 		}
 		Node<T>* copy = this->_listHead;
-		
+
 		while (copy->next->next != nullptr)
 			copy = copy->next;
 		T result = copy->next->value;
