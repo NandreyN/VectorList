@@ -4,7 +4,7 @@ namespace CustomListComponents
 	template<class T>
 	struct Node
 	{
-		explicit Node()
+		Node()
 		{
 			value = 0;
 			next = nullptr;
