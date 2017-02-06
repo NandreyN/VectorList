@@ -59,7 +59,7 @@ namespace CustomListComponents
 	}
 
 	template <class T>
-	void ListIterator<T>::operator++()
+	void ListIterator<T>::operator++() throw (std::out_of_range)
 	{
 		if (this->_target->next != nullptr)
 		{
@@ -121,8 +121,6 @@ namespace CustomListComponents
 		T remove();
 	private:
 		Node<T>* getLastNode();
-
-
 		Node<T>* _listHead;
 	};
 

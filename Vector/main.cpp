@@ -19,5 +19,7 @@ int main()
 	{
 		cout << list.remove() << endl;
 	}
+	//list.begin().setData(100500); worksincorrectly
+	cout << list.remove() << endl;
 	return 0;
 }
