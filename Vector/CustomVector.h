@@ -27,12 +27,13 @@ public:
 	void push_front(const T&);
 	T pop_back();
 	T pop_front();
-	T& operator[](int);
-	T& at(int);
+	void erase(const T&);
+	T& operator[](int) const;
+	T& at(int) const;
 	void insert(int, const T&);
 
-	iterator begin();
-	iterator end();
+	iterator begin() const;
+	iterator end() const;
 	void clear();
 
 
@@ -114,7 +115,7 @@ T Vector<T>::pop_front()
 }
 
 template <class T>
-T& Vector<T>::operator[](int i) throw (std::out_of_range)
+T& Vector<T>::operator[](int i) const throw (std::out_of_range)
 {
 	int counter = 0;
 	auto iter = this->begin();
@@ -131,7 +132,7 @@ T& Vector<T>::operator[](int i) throw (std::out_of_range)
 }
 
 template <class T>
-T& Vector<T>::at(int i)
+T& Vector<T>::at(int i) const
 {
 	int counter = 0;
 	auto iter = this->begin();
@@ -151,7 +152,7 @@ void Vector<T>::insert(int, const T&)
 }
 
 template <class T>
-typename Vector<T>::iterator Vector<T>::begin()
+typename Vector<T>::iterator Vector<T>::begin() const
 {
 	if (_head->next != nullptr)
 		return iterator(this->_head);
@@ -159,7 +160,7 @@ typename Vector<T>::iterator Vector<T>::begin()
 }
 
 template <class T>
-typename Vector<T>::iterator Vector<T>::end()
+typename Vector<T>::iterator Vector<T>::end() const
 {
 	if (_head == nullptr)
 	{
