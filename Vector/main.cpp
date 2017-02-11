@@ -20,7 +20,10 @@ int main()
 		cout << *begin << endl;
 		++begin;
 	}
-	cout << vector.pop_back() << endl;
-
+	//cout << vector.pop_back() << endl;
+	cout << vector.at(0) << endl;
+	cout << vector.at(1) << endl;
+	cout << vector.at(2) << endl;
+	cout << vector.at(3) << endl;
 	return 0;
 }

@@ -103,13 +103,16 @@ T& Vector<T>::operator[](int)
 template <class T>
 T& Vector<T>::at(int i)
 {
-	Node* copy = _head;
 	int counter = 0;
-	while (counter != i && copy->next->next != nullptr)
+	auto iter = this->begin();
+	while(iter != this->end() && i != counter)
 	{
-
+		++iter;
+		counter++;
 	}
-	return NULL;
+	
+	assert(i == counter && iter != this->end());
+	return *iter;
 }
 
 template <class T>
