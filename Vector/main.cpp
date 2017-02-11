@@ -9,16 +9,10 @@ int main()
 	
 
 	Vector<int>::iterator begin = vector.begin();
-	//vector.clear();
-	vector.push_front(123);
-
-	begin = vector.begin();
-
-	while(begin != vector.end())
-	{
-		cout << *begin << endl;
-		++begin;
-	}
-	vector.clear();
+	vector.push_back(1);
+	vector.push_back(2);
+	vector.push_back(3);
+	vector.push_back(4);
+	cout << vector.pop_front() << endl;
 	return 0;
 }

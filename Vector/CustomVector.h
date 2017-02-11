@@ -31,6 +31,7 @@ public:
 	T& operator[](int) const;
 	T& at(int) const;
 	void insert(int, const T&);
+	int size() const;
 
 	iterator begin() const;
 	iterator end() const;
@@ -50,6 +51,22 @@ private:
 	Node* _head;
 	T removeLastNode();
 };
+
+template <class T>
+int Vector<T>::size() const
+{
+	if (this->_head == nullptr || this->_head->next == nullptr)
+		return 0;
+
+	int count = 0;
+	iterator bgn = this->begin();
+	while (bgn != this->end())
+	{
+		++bgn;
+		count++;
+	}
+	return count;
+}
 
 template <class T>
 Vector<T>::Vector()
@@ -106,7 +123,17 @@ T Vector<T>::pop_back()
 template <class T>
 T Vector<T>::pop_front()
 {
-
+	assert(this->size() > 0);
+	T toReturn = _head->value;
+	if (this->size() == 0)
+	{
+		this->clear();
+		return toReturn;
+	}
+	Node* newHead = _head->next;
+	delete _head; _head->next = nullptr;
+	_head = newHead;
+	return toReturn;
 }
 
 template <class T>
@@ -131,12 +158,12 @@ T& Vector<T>::at(int i) const
 {
 	int counter = 0;
 	auto iter = this->begin();
-	while(iter != this->end() && i != counter)
+	while (iter != this->end() && i != counter)
 	{
 		++iter;
 		counter++;
 	}
-	
+
 	assert(i == counter && iter != this->end());
 	return *iter;
 }
