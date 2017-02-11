@@ -27,7 +27,7 @@ public:
 	void push_front(const T&);
 	T pop_back();
 	T pop_front();
-	void erase(const T&);
+
 	T& operator[](int) const;
 	T& at(int) const;
 	void insert(int, const T&);
@@ -77,6 +77,7 @@ Vector<T>::Vector()
 template <class T>
 Vector<T>::~Vector()
 {
+	this->clear();
 }
 
 template <class T>
@@ -135,6 +136,7 @@ T Vector<T>::pop_front()
 	_head = newHead;
 	return toReturn;
 }
+
 
 template <class T>
 T& Vector<T>::operator[](int i) const throw (std::out_of_range)
