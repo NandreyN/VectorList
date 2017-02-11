@@ -1,5 +1,6 @@
 #pragma once
 #include <assert.h>
+#include <queue>
 
 template<class T>
 class Vector
@@ -80,8 +81,24 @@ void Vector<T>::push_back(const T& data)
 }
 
 template <class T>
-void Vector<T>::push_front(const T&)
+void Vector<T>::push_front(const T& value)
 {
+	std::queue<T> queue;
+	auto iter = this->begin();
+	while(iter != this->end())
+	{
+		queue.push(*iter);
+		++iter;
+	}
+
+	this->clear();
+	this->push_back(value);
+	while (queue.size() != 0)
+	{
+		T k = (T)queue.front();
+		queue.pop();
+		this->push_back(k);
+	}
 }
 
 template <class T>
@@ -93,6 +110,7 @@ T Vector<T>::pop_back()
 template <class T>
 T Vector<T>::pop_front()
 {
+
 }
 
 template <class T>
