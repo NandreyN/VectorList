@@ -96,8 +96,20 @@ T Vector<T>::pop_front()
 }
 
 template <class T>
-T& Vector<T>::operator[](int)
+T& Vector<T>::operator[](int i) throw (std::out_of_range)
 {
+	int counter = 0;
+	auto iter = this->begin();
+	while (iter != this->end() && i != counter)
+	{
+		++iter;
+		counter++;
+	}
+
+	if (i != counter || iter == this->end())
+		throw std::out_of_range("Elemt is out of bounds of vector");
+
+	return *iter;
 }
 
 template <class T>
