@@ -1,8 +1,8 @@
 #include<iostream> 
-#include "CustomList.h"
+#include "CustomVector.h"
 #include<algorithm>
 using namespace std;
-using namespace CustomListComponents;
+using namespace CustomVectorComponents;
 
 int main()
 {
