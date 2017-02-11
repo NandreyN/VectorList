@@ -12,7 +12,7 @@ int main()
 
 	Vector<int>::iterator begin = vector.begin();
 	*begin = 22;
-	vector.clear();
+	//vector.clear();
 	begin = vector.begin();
 
 	while(begin != vector.end())
@@ -20,6 +20,7 @@ int main()
 		cout << *begin << endl;
 		++begin;
 	}
-	
+	cout << vector.pop_back() << endl;
+
 	return 0;
 }

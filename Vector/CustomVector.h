@@ -34,11 +34,11 @@ public:
 	iterator end();
 	void clear();
 
-	void removeLastNode();
+
 private:
 	struct Node
 	{
-		Node():value(0)
+		Node() :value(0)
 		{
 			next = nullptr;
 		}
@@ -46,7 +46,7 @@ private:
 		T value;
 	};
 	Node* _head;
-	
+	T removeLastNode();
 };
 
 template <class T>
@@ -87,6 +87,7 @@ void Vector<T>::push_front(const T&)
 template <class T>
 T Vector<T>::pop_back()
 {
+	return removeLastNode();
 }
 
 template <class T>
@@ -104,9 +105,9 @@ T& Vector<T>::at(int i)
 {
 	Node* copy = _head;
 	int counter = 0;
-	while(counter !=i && copy->next->next != nullptr)
+	while (counter != i && copy->next->next != nullptr)
 	{
-		
+
 	}
 	return NULL;
 }
@@ -119,7 +120,9 @@ void Vector<T>::insert(int, const T&)
 template <class T>
 typename Vector<T>::iterator Vector<T>::begin()
 {
-	return iterator(this->_head);
+	if (_head->next != nullptr)
+		return iterator(this->_head);
+	return iterator(nullptr);
 }
 
 template <class T>
@@ -148,7 +151,7 @@ void Vector<T>::clear()
 }
 
 template <class T>
-void Vector<T>::removeLastNode()
+T Vector<T>::removeLastNode()
 {
 	// Need to :
 	// 1. Delete gag
@@ -157,7 +160,7 @@ void Vector<T>::removeLastNode()
 
 	// assert(_head == nullptr || _head->next == nullptr);
 	if (_head == nullptr || _head->next == nullptr)
-		return;
+		return NULL;
 
 	Node* cpy = _head;
 	while (cpy->next->next != nullptr)
@@ -165,9 +168,13 @@ void Vector<T>::removeLastNode()
 
 	//assert(cpy->next == nullptr);
 	if (cpy->next == nullptr)
-		return;
+		return NULL;
 
 	delete cpy->next;
 	cpy->next = nullptr;
+
+	T valueCopy = cpy->value;
 	cpy->value = 0;
+
+	return valueCopy;
 }
