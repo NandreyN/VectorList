@@ -60,11 +60,7 @@ int Vector<T>::size() const
 
 	int count = 0;
 	iterator bgn = this->begin();
-	while (bgn != this->end())
-	{
-		++bgn;
-		count++;
-	}
+	while (bgn != this->end()) { ++bgn; count++; }
 	return count;
 }
 
@@ -126,7 +122,7 @@ T Vector<T>::pop_front()
 {
 	assert(this->size() > 0);
 	T toReturn = _head->value;
-	if (this->size() == 0)
+	if (this->size() == 1)
 	{
 		this->clear();
 		return toReturn;
@@ -150,7 +146,7 @@ T& Vector<T>::operator[](int i) const throw (std::out_of_range)
 	}
 
 	if (i != counter || iter == this->end())
-		throw std::out_of_range("Elemt is out of bounds of vector");
+		throw std::out_of_range("Element is out of bounds of vector");
 
 	return *iter;
 }
@@ -171,8 +167,32 @@ T& Vector<T>::at(int i) const
 }
 
 template <class T>
-void Vector<T>::insert(int, const T&)
+void Vector<T>::insert(int pos, const T& val)
 {
+	assert(pos >=0);
+	int size = this->size();
+	if (pos >= size - 1)
+	{
+		this->push_back(val);
+		return;
+	}
+	if (pos == 0)
+	{
+		this->push_front(val);
+		return;
+	}
+	int cnt = 0;
+	Node* newHead = _head;
+	while (newHead->next != nullptr && cnt != pos)
+	{
+		newHead = newHead->next;
+		cnt++;
+	}
+
+	Node* toInsert = new Node;
+	toInsert->next = newHead->next;
+	toInsert->value = val;
+	newHead->next = toInsert;
 }
 
 template <class T>
