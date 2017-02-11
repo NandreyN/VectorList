@@ -84,22 +84,17 @@ void Vector<T>::push_back(const T& data)
 template <class T>
 void Vector<T>::push_front(const T& value)
 {
-	std::queue<T> queue;
-	auto iter = this->begin();
-	while(iter != this->end())
+	if (_head == nullptr)
 	{
-		queue.push(*iter);
-		++iter;
+		_head = new Node();
+		_head->value = value;
+		_head->next = new Node;
+		return;
 	}
-
-	this->clear();
-	this->push_back(value);
-	while (queue.size() != 0)
-	{
-		T k = (T)queue.front();
-		queue.pop();
-		this->push_back(k);
-	}
+	Node* newHead = new Node;
+	newHead->value = value;
+	newHead->next = _head;
+	_head = newHead;
 }
 
 template <class T>
@@ -154,7 +149,7 @@ void Vector<T>::insert(int, const T&)
 template <class T>
 typename Vector<T>::iterator Vector<T>::begin() const
 {
-	if (_head->next != nullptr)
+	if (_head == nullptr || _head->next != nullptr)
 		return iterator(this->_head);
 	return iterator(nullptr);
 }
