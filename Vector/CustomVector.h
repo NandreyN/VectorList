@@ -1,13 +1,13 @@
 #pragma once
 #include <assert.h>
-#include <queue>
+#include <iterator>
 
 template<class T>
 class Vector
 {
 	struct Node;
 public:
-	class iterator
+	class iterator : public std::iterator<std::forward_iterator_tag, T>
 	{
 	public:
 		iterator(Node* ref) : _data(ref) {}
@@ -169,7 +169,7 @@ T& Vector<T>::at(int i) const
 template <class T>
 void Vector<T>::insert(int pos, const T& val)
 {
-	assert(pos >=0);
+	assert(pos >= 0);
 	int size = this->size();
 	if (pos >= size - 1)
 	{
